@@ -1,10 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Paweł Wysocki - Resume</title>
   <style>
+    :root {
+      --fg: #172b4d;
+      --muted: #51607a;
+      --chip-bg: #f6fbff;
+      --chip-bd: #dbe6f5;
+      --card-bg: #ffffff;
+      --card-bd: #e8edf5;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
+    }
+
+    .skill-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-bd);
+      border-radius: 12px;
+      padding: 14px 16px;
+    }
+
+    .skill-card h3 {
+      margin: 0 0 10px 0;
+      font-size: 1.05rem;
+      color: var(--fg);
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      padding: 6px 10px;
+      border: 1px solid var(--chip-bd);
+      background: var(--chip-bg);
+      border-radius: 10px;
+      font-size: .92rem;
+      white-space: nowrap;
+    }
+
     body {
       font-family: "Consolas", monospace;
       margin: 0;
@@ -74,12 +118,15 @@
       margin-top: 10px;
     }
 
+    /* unify job tech-stack tags with the same style as skill chips */
     .tech-stack span {
-      background: #e3fcef;
-      color: #006644;
-      padding: 5px 10px;
-      border-radius: 5px;
-      font-size: 14px;
+      background: #f7fbff;
+      border: 1px solid #dfe8f3;
+      border-radius: 10px;
+      padding: 6px 10px;
+      font-size: .92rem;
+      white-space: nowrap;
+      color: #172b4d;
     }
 
     .footer {
@@ -91,28 +138,105 @@
 
     /* Export button */
     .export-btn {
-      position: sticky; top: 12px; float: right;
-      padding: 8px 14px; border: 0; border-radius: 6px;
-      background: #0052cc; color: #fff; cursor: pointer;
-      font-family: inherit; box-shadow: 0 2px 6px rgba(0,0,0,.15);
+      position: sticky;
+      top: 12px;
+      float: right;
+      padding: 8px 14px;
+      border: 0;
+      border-radius: 6px;
+      background: #0052cc;
+      color: #fff;
+      cursor: pointer;
+      font-family: inherit;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, .15);
     }
-    .export-btn:hover { filter: brightness(1.05); }
+
+    .export-btn:hover {
+      filter: brightness(1.05);
+    }
 
     /* Print rules */
-    @page { size: A4; margin: 12mm; }
+    @page {
+      size: A4;
+      margin: 12mm;
+    }
 
     @media print {
-      body { background: #fff !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-      .container { box-shadow: none !important; margin: 0 !important; max-width: none !important; border-radius: 0 !important; }
-      .no-print { display: none !important; }
+      body {
+        background: #fff !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
 
-      h1, h2, h3 { break-after: avoid; }
-      .section, .header, ul, li, .tech-stack { break-inside: avoid; }
-      p, li { orphans: 3; widows: 3; }
-      a { text-decoration: none; }
+      .container {
+        box-shadow: none !important;
+        margin: 0 !important;
+        max-width: none !important;
+        border-radius: 0 !important;
+      }
+
+      .no-print {
+        display: none !important;
+      }
+
+      h1,
+      h2,
+      h3 {
+        break-after: avoid;
+      }
+
+      .section,
+      .header,
+      ul,
+      li,
+      .tech-stack {
+        break-inside: avoid;
+      }
+
+      p,
+      li {
+        orphans: 3;
+        widows: 3;
+      }
+
+      a {
+        text-decoration: none;
+      }
+    }
+
+    /* Force light mode look for Skills section */
+    #skills .skill-card {
+      background: #ffffff !important;
+      border: 1px solid #e7edf6 !important;
+      border-radius: 12px;
+      box-shadow: 0 1px 2px rgba(16, 24, 40, .04);
+      color: #172b4d !important;
+    }
+
+    #skills .skill-card h3 {
+      color: #172b4d !important;
+      margin: 0 0 10px 0;
+      font-size: 1.05rem;
+    }
+
+    #skills .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    #skills .chip {
+      background: #f7fbff !important;
+      border: 1px solid #dfe8f3 !important;
+      border-radius: 10px;
+      padding: 6px 10px;
+      font-size: .92rem;
+      white-space: nowrap;
+      color: #172b4d !important;
     }
   </style>
 </head>
+
 <body>
   <div class="container">
     <button class="no-print export-btn" onclick="exportPDF()">Export PDF</button>
@@ -122,185 +246,253 @@
       <div>
         <h1>Paweł Wysocki</h1>
         <p>Email: <a href="mailto:hak1mboo@gmail.com">hak1mboo@gmail.com</a> | Phone: 796 17 17 18</p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/pawe%C5%82-wysocki-02428229">linkedin.com/in/pawe%C5%82-wysocki-02428229</a></p>
+        <p>LinkedIn: <a
+            href="https://www.linkedin.com/in/pawe%C5%82-wysocki-02428229">linkedin.com/in/pawe%C5%82-wysocki-02428229</a>
+        </p>
       </div>
     </div>
 
     <!-- === Summary === -->
     <div class="section">
       <h2>Summary</h2>
-      <p>Multi skilled engineer with specialties in: system administration, applications deployments and management, database management (PostgreSQL, MySQL), environment management (VMs, containers), Terraform, Kubernetes (AKS, Rancher), Python, Groovy, Bash, Nexus, SonarQube, Docker, Linux, Windows Servers, Ansible, Puppet, Rundeck, Jenkins, Hyperic, ELK, Nagios, Prometheus, Zabbix, VMware, ESXi, Backups, Disaster Recovery, tech team lead, roadmap building. </p>
-      <p>Over 12 years experience in managing Atlassian software (JIRA, Confluence, Bitbucket, Bamboo, Crowd).</p>
-      <p>Nearly 15 years in IT.</p>
+      <p>Platform / DevOps Engineer with 15+ years of experience in cloud, automation, and toolchain engineering.Expert
+        in the Atlassian ecosystem (Jira, Confluence, Bitbucket, Bamboo), with a proven record of designing, deploying,
+        and operating large-scale DevOps platforms. Strong expertise in Azure (AKS, Terraform, CI/CD), with a solid
+        foundation in VMware vSphere–based private cloud. Skilled in Infrastructure as Code, Kubernetes, monitoring, and
+        hybrid cloud architecture. Trusted advisor for architecture topics, cross-team integrations, and platform
+        strategy.</p>
     </div>
 
     <!-- === Experience === -->
-        <div class="section">
-            <h2>Experience</h2>
-            <ul>
-                <li>
-                    <h3>Senior Atlassian / DevOps Engineer - Asseco Solutions DACH</h3>
-                    <p><em>May 2023 - Present</em></p>
-                    <ul>
-                        <li>Solely responsible for Atlassian/DevOps Tools stack and supporting services architecture / setup / infrastructure / maintenance / security and monitoring</li>
-                        <li>Providing technical recommendations, designing roadmap and shaping solutions for business needs</li>
-                        <li>Functioning as a one-person team, ensuring smooth operation and high availability of all tools and services.</li>
-                    </ul>
-                    <div class="tech-stack">
-                        <span>VMware</span>
-                        <span>Docker</span>
-                        <span>Ansible</span>
-                        <span>Terraform</span>
-                        <span>Bash</span>
-                        <span>Python</span>
-                        <span>PostgreSQL</span>
-                        <span>HAProxy</span>
-                        <span>Atlassian stack</span>
-                        <span>Nexus</span>
-                        <span>Harbor</span>
-                        <span>Jenkins</span>
-                        <span>Groovy</span>
-                        <span>Azure</span>
-                        <span>Zabbix</span>
-                    </div>
-                </li>
-                <li>
-                    <h3>Senior DevOps Engineer - Fujitsu</h3>
-                    <p><em>Oct 2022 - Apr 2023</em></p>
-                    <ul>
-                        <li>Development of hybrid cloud containerization solution for the banking sector</li>
-                    </ul>
-                    <div class="tech-stack">
-                        <span>Terraform</span>
-                        <span>Kubernetes (AKS/On-Prem)</span>
-                        <span>Rancher</span>
-                        <span>Keycloak</span>
-                        <span>Azure</span>
-                        <span>Azure DevOps</span>
-                        <span>Ansible</span>
-                        <span>Citrix ADC</span>
-                    </div>
-                </li>
-                <li>
-                    <h3>DevOps Engineer - BAE Systems Digital Intelligence</h3>
-                    <p><em>Mar 2016 - Sep 2022</em></p>
-                    <ul>
-                        <li>Provided technical support and administration for Atlassian tools</li>
-                        <li>Automation of VM provisioning, application deployments, and CI/CD pipelines</li>
-                        <li>Managed databases, backups, monitoring, and performance analytics</li>
-                    </ul>
-                    <div class="tech-stack">
-                        <span>Terraform</span>
-                        <span>Ansible</span>
-                        <span>Python</span>
-                        <span>Bash</span>
-                        <span>Linux</span>
-                        <span>Atlassian stack</span>
-                        <span>Nexus</span>
-                        <span>AWS</span>
-                        <span>ELK</span>
-                        <span>Hyperic</span>
-                        <span>PostgreSQL</span>
-                    </div>
-                </li>
-                <li>
-                    <h3>IT Specialist - Roche</h3>
-                    <p><em>Apr 2010 - Feb 2016</em></p>
-                    <ul>
-                        <li>System administration and application support for JIRA, Confluence, Bamboo, and more</li>
-                        <li>2nd Level Support for Salesforce (IHCP project)</li>
-                    </ul>
-                    <div class="tech-stack">
-                        <span>Atlassian stack</span>
-                        <span>Bash</span>
-                        <span>Linux</span>
-                        <span>Nexus</span>
-                        <span>ELK</span>
-                        <span>PostgreSQL</span>
-                        <span>MySQL</span>
-                        <span>Salesforce</span>
-                    </div>
-                </li>
-                <li>
-                    <h3>IT Specialist - Naftoremont Sp. z o.o.</h3>
-                    <p><em>Jul 2008 - Mar 2010</em></p>
-                    <ul>
-                        <li>Mail server and network administration</li>
-                        <li>Primavera Administration, Help Desk</li>
-                    </ul>
-                    <div class="tech-stack">
-                        <span>Windows</span>
-                        <span>Linux</span>
-                        <span>Network</span>
-                        <span>Firewalls</span>
-                        <span>Mail Servers</span>
-                    </div>
-                </li>
-            </ul>
+    <div class="section">
+      <h2>Experience</h2>
+      <ul>
+        <li>
+          <h3>Senior Atlassian / DevOps Engineer - Asseco Solutions DACH</h3>
+          <p><em>May 2023 - Present</em></p>
+          <ul>
+            <li>Own architecture, deployment, security, and monitoring of the Atlassian/DevOps tools stack, ensuring
+              reliable services.</li>
+            <li>Expert administration of Jira, Confluence, Bitbucket, Bamboo, handling upgrades, scaling,
+              customizations, and integrations.</li>
+            <li>Support and maintain CI/CD infrastructure, managing build agents, runners, and integrations with
+              Atlassian and Azure DevOps.</li>
+            <li>Collaborate with development teams to improve and update pipelines, enabling faster, more reliable
+              delivery.</li>
+            <li>Partner with the Head of IT on architecture topics, advising on platform design, integrations, and
+              tooling strategy.</li>
+            <li>Act as a bridge across teams (including AI and data teams), supporting architecture discussions and
+              aligning infrastructure with business goals.</li>
+          </ul>
+          <div class="tech-stack">
+            <span>VMware</span>
+            <span>Docker</span>
+            <span>Ansible</span>
+            <span>Terraform</span>
+            <span>Bash</span>
+            <span>Python</span>
+            <span>PostgreSQL</span>
+            <span>HAProxy</span>
+            <span>Atlassian stack</span>
+            <span>Nexus</span>
+            <span>Harbor</span>
+            <span>Jenkins</span>
+            <span>Groovy</span>
+            <span>Azure</span>
+            <span>Zabbix</span>
+          </div>
+        </li>
+        <li>
+          <h3>Senior DevOps Engineer - Fujitsu</h3>
+          <p><em>Oct 2022 - Apr 2023</em></p>
+          <ul>
+            <li>Designed and delivered hybrid cloud containerization for a banking client using Azure AKS, Terraform,
+              Rancher.</li>
+            <li>Automated infrastructure provisioning and configuration with Terraform + Ansible, reducing deployment
+              effort significantly.</li>
+            <li>Built and optimized CI/CD pipelines (Azure DevOps, Jenkins) integrating with Atlassian tools.</li>
+            <li>Implemented Azure Web Application Firewall (WAF) to secure workloads and meet compliance requirements.
+            </li>
+            <li>Performed cloud cost analysis and optimization, improving resource efficiency and reducing operational
+              expenses.</li>
+            <li>Integrated authentication/authorization with Keycloak and optimized traffic management with Citrix ADC.
+            </li>
+          </ul>
+          <div class="tech-stack">
+            <span>Terraform</span>
+            <span>Kubernetes (AKS/On-Prem)</span>
+            <span>Rancher</span>
+            <span>Keycloak</span>
+            <span>Azure</span>
+            <span>Azure DevOps</span>
+            <span>Ansible</span>
+            <span>Citrix ADC</span>
+          </div>
+        </li>
+        <li>
+          <h3>DevOps Engineer - BAE Systems Digital Intelligence</h3>
+          <p><em>Mar 2016 - Sep 2022</em></p>
+          <ul>
+            <li>Administered and scaled the Atlassian tools stack (Jira, Confluence, Bitbucket, Bamboo) across
+              enterprise projects.</li>
+            <li>Automated infrastructure and deployments using Terraform, Ansible, Python, Bash.</li>
+            <li>Built and maintained CI/CD pipelines with Jenkins integrated into Atlassian workflows.</li>
+            <li>Ensured system reliability and monitoring with ELK, Zabbix, and other observability tools.</li>
+          </ul>
+          <div class="tech-stack">
+            <span>Terraform</span>
+            <span>Ansible</span>
+            <span>Python</span>
+            <span>Bash</span>
+            <span>Linux</span>
+            <span>Atlassian stack</span>
+            <span>Nexus</span>
+            <span>AWS</span>
+            <span>ELK</span>
+            <span>Hyperic</span>
+            <span>PostgreSQL</span>
+          </div>
+        </li>
+        <li>
+          <h3>IT Specialist - Roche</h3>
+          <p><em>Apr 2010 - Feb 2016</em></p>
+          <ul>
+            <li>Supported and integrated enterprise systems including Atlassian tools (Jira, Confluence, Bamboo) and
+              Salesforce.</li>
+            <li>Managed Linux systems, scripting (Bash), and integrated monitoring/logging stacks (ELK, Nexus).</li>
+            <li>Delivered application support and system integrations improving reliability across multiple teams.</li>
+          </ul>
+          <div class="tech-stack">
+            <span>Atlassian stack</span>
+            <span>Bash</span>
+            <span>Linux</span>
+            <span>Nexus</span>
+            <span>ELK</span>
+            <span>PostgreSQL</span>
+            <span>MySQL</span>
+            <span>Salesforce</span>
+          </div>
+        </li>
+        <li>
+          <h3>IT Specialist - Naftoremont Sp. z o.o.</h3>
+          <p><em>Jul 2008 - Mar 2010</em></p>
+          <ul>
+            <li>Administered Windows/Linux servers, networks, and firewalls ensuring system stability.</li>
+            <li>Managed virtualization and backups for business-critical workloads.</li>
+          </ul>
+          <div class="tech-stack">
+            <span>Windows</span>
+            <span>Linux</span>
+            <span>Network</span>
+            <span>Firewalls</span>
+            <span>Mail Servers</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Education</h2>
+      <ul>
+        <li>
+          <h3>MSc, Management - Szkoła Wyższa im. Pawła Włodkowica w Płocku</h3>
+          <p><em>2008 - 2010</em></p>
+        </li>
+        <li>
+          <h3>BSc, Information Technology - Szkoła Wyższa im. Pawła Włodkowica w Płocku</h3>
+          <p><em>2004 - 2008</em></p>
+        </li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Certifications | Trainings</h2>
+      <ul>
+        <li>Kubernetes &amp; Helm in practice - Sages (Issued Jul 2022)</li>
+        <li>Terraform in AWS - Sages (Issued Apr 2022)</li>
+        <li>Puppet Advanced - Sages (Issued Sep 2021)</li>
+        <li>Scrum Master PSM I - BAE Systems Digital Intelligence (Issued Apr 2020)</li>
+        <li>Product Owner tools and techniques and SAFe - BAE Systems (Issued Apr 2020)</li>
+        <li>Running Kubernetes on AWS (EKS) - LinkedIn (Issued May 2023)</li>
+        <li>Learning Azure Kubernetes Service (AKS) - LinkedIn (Issued Feb 2023)</li>
+        <li>Azure Administration Essential Training - LinkedIn (Issued Oct 2022)</li>
+        <li>DevOps Foundations - LinkedIn (Issued Oct 2022)</li>
+        <li>Learning Azure DevOps - LinkedIn (Issued Oct 2022)</li>
+        <li>Microsoft Azure: Networking Concepts - LinkedIn (Issued Oct 2022)</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h3>Atlassian</h3>
+          <div class="chips">
+            <span class="chip">Jira</span><span class="chip">Confluence</span>
+            <span class="chip">Bitbucket</span><span class="chip">Bamboo</span>
+            <span class="chip">Admin</span><span class="chip">Scaling</span>
+            <span class="chip">Integrations / REST</span>
+          </div>
         </div>
 
-        <div class="section">
-            <h2>Education</h2>
-            <ul>
-                <li>
-                    <h3>MSc, Management - Szkoła Wyższa im. Pawła Włodkowica w Płocku</h3>
-                    <p><em>2008 - 2010</em></p>
-                </li>
-                <li>
-                    <h3>BSc, Information Technology - Szkoła Wyższa im. Pawła Włodkowica w Płocku</h3>
-                    <p><em>2004 - 2008</em></p>
-                </li>
-            </ul>
+        <div class="skill-card">
+          <h3>Cloud & Virtualization</h3>
+          <div class="chips">
+            <span class="chip">Azure (AKS, Net, Storage, IdP)</span>
+            <span class="chip">Azure WAF</span>
+            <span class="chip">Cost Analysis</span>
+            <span class="chip">VMware vSphere</span>
+          </div>
         </div>
 
-        <div class="section">
-            <h2>Certifications | Trainings</h2>
-            <ul>
-                <li>Kubernetes &amp; Helm in practice - Sages (Issued Jul 2022)</li>
-                <li>Terraform in AWS - Sages (Issued Apr 2022)</li>
-                <li>Puppet Advanced - Sages (Issued Sep 2021)</li>
-                <li>Scrum Master PSM I - BAE Systems Digital Intelligence (Issued Apr 2020)</li>
-                <li>Product Owner tools and techniques and SAFe - BAE Systems (Issued Apr 2020)</li>
-                <li>Running Kubernetes on AWS (EKS) - LinkedIn (Issued May 2023)</li>
-                <li>Learning Azure Kubernetes Service (AKS) - LinkedIn (Issued Feb 2023)</li>
-                <li>Azure Administration Essential Training - LinkedIn (Issued Oct 2022)</li>
-                <li>DevOps Foundations - LinkedIn (Issued Oct 2022)</li>
-                <li>Learning Azure DevOps - LinkedIn (Issued Oct 2022)</li>
-                <li>Microsoft Azure: Networking Concepts - LinkedIn (Issued Oct 2022)</li>
-            </ul>
+        <div class="skill-card">
+          <h3>Automation & IaC</h3>
+          <div class="chips">
+            <span class="chip">Terraform</span><span class="chip">Ansible</span>
+            <span class="chip">Puppet</span><span class="chip">Bash</span>
+            <span class="chip">PowerShell</span><span class="chip">Python</span>
+            <span class="chip">Groovy</span>
+          </div>
         </div>
 
-        <div class="section">
-            <h2>Skills</h2>
-            <div class="tech-stack">
-                <span>JIRA</span>
-                <span>Confluence</span>
-                <span>Bitbucket</span>
-                <span>GIT</span>
-                <span>Python</span>
-                <span>Groovy</span>
-                <span>Shell Scripting</span>
-                <span>Docker Products</span>
-                <span>Databases</span>
-                <span>Linux System Administration</span>
-                <span>VMware</span>
-                <span>Microsoft Azure</span>
-                <span>Kubernetes</span>
-                <span>Ansible</span>
-                <span>Terraform</span>
-                <span>Zabbix</span>
-            </div>
+        <div class="skill-card">
+          <h3>CI/CD</h3>
+          <div class="chips">
+            <span class="chip">Azure DevOps</span><span class="chip">Jenkins</span>
+            <span class="chip">GitHub Actions</span><span class="chip">Git</span>
+          </div>
         </div>
 
-        <div class="section">
-            <h2>Hobbies</h2>
-            <ul>
-                <li>Gargening (<a href="https://www.youtube.com/@hak1mboo">my garden YT</a>)</li>
-                <li>Playing piano</li>
-                <li>Spending time with my family</li>
-                <li>Learning new tech</li>
-            </ul>
+        <div class="skill-card">
+          <h3>Containers</h3>
+          <div class="chips">
+            <span class="chip">Kubernetes (AKS, Rancher)</span>
+            <span class="chip">Docker</span>
+          </div>
         </div>
+
+        <div class="skill-card">
+          <h3>Monitoring & Systems</h3>
+          <div class="chips">
+            <span class="chip">Zabbix</span><span class="chip">Prometheus</span>
+            <span class="chip">ELK</span><span class="chip">Grafana</span>
+            <span class="chip">Nagios</span><span class="chip">Linux Admin</span>
+            <span class="chip">Windows Server</span><span class="chip">PostgreSQL</span>
+            <span class="chip">MySQL</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Hobbies</h2>
+      <ul>
+        <li>Gargening (<a href="https://www.youtube.com/@hak1mboo">my garden YT</a>)</li>
+        <li>Playing piano</li>
+        <li>Spending time with my family</li>
+        <li>Learning new tech</li>
+      </ul>
+    </div>
 
 
     <div class="footer">
@@ -313,7 +505,7 @@
   <script>
     function exportPDF() {
       const opt = {
-        margin: [10,10,10,10],
+        margin: [10, 10, 10, 10],
         filename: 'Pawel-Wysocki-CV.pdf',
         image: { type: 'jpeg', quality: 0.98 },
         html2canvas: { scale: 2, useCORS: true },
@@ -324,4 +516,5 @@
     }
   </script>
 </body>
+
 </html>
