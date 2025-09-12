@@ -1,110 +1,140 @@
-<!DOCTYPE html><html lang="en"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paweł Wysocki - Resume</title>
-    <style>
-        body {
-            font-family: "Consolas", monospace;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f5f7;
-            color: #253858;
-        }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paweł Wysocki - Resume</title>
+  <style>
+    body {
+      font-family: "Consolas", monospace;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f5f7;
+      color: #253858;
+    }
 
-        .container {
-            max-width: 900px;
-            margin: 40px auto;
-            background: #fff;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
 
-        .header {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid #eaecef;
-        }
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #eaecef;
+    }
 
-        .header img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            border: 3px solid #0052cc;
-        }
+    .header img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 3px solid #0052cc;
+    }
 
-        .header h1 {
-            margin: 0;
-            font-size: 28px;
-        }
+    .header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
 
-        .header p {
-            margin: 0;
-            color: #5e6c84;
-        }
+    .header p {
+      margin: 0;
+      color: #5e6c84;
+    }
 
-        .section {
-            margin-bottom: 30px;
-        }
+    .section {
+      margin-bottom: 30px;
+    }
 
-        .section h2 {
-            font-size: 20px;
-            color: #0052cc;
-            border-left: 4px solid #0052cc;
-            padding-left: 10px;
-        }
+    .section h2 {
+      font-size: 20px;
+      color: #0052cc;
+      border-left: 4px solid #0052cc;
+      padding-left: 10px;
+    }
 
-        ul {
-            list-style: square;
-            padding-left: 20px;
-        }
+    ul {
+      list-style: square;
+      padding-left: 20px;
+    }
 
-        ul li {
-            margin-bottom: 10px;
-        }
+    ul li {
+      margin-bottom: 10px;
+    }
 
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 10px;
-        }
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
 
-        .tech-stack span {
-            background: #e3fcef;
-            color: #006644;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 14px;
-        }
+    .tech-stack span {
+      background: #e3fcef;
+      color: #006644;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 14px;
+    }
 
-        .footer {
-            text-align: center;
-            margin-top: 40px;
-            font-size: 12px;
-            color: #7a869a;
-        }
-    </style>
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 12px;
+      color: #7a869a;
+    }
+
+    /* Export button */
+    .export-btn {
+      position: sticky; top: 12px; float: right;
+      padding: 8px 14px; border: 0; border-radius: 6px;
+      background: #0052cc; color: #fff; cursor: pointer;
+      font-family: inherit; box-shadow: 0 2px 6px rgba(0,0,0,.15);
+    }
+    .export-btn:hover { filter: brightness(1.05); }
+
+    /* Print rules */
+    @page { size: A4; margin: 12mm; }
+
+    @media print {
+      body { background: #fff !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .container { box-shadow: none !important; margin: 0 !important; max-width: none !important; border-radius: 0 !important; }
+      .no-print { display: none !important; }
+
+      h1, h2, h3 { break-after: avoid; }
+      .section, .header, ul, li, .tech-stack { break-inside: avoid; }
+      p, li { orphans: 3; widows: 3; }
+      a { text-decoration: none; }
+    }
+  </style>
+</head>
 <body>
-    <div class="container">
-        <div class="header">
-            <img src="zdjecie.png" alt="Profile Picture">
-            <div>
-                <h1>Paweł Wysocki</h1>
-                <p>Email: <a href="mailto:hak1mboo@gmail.com">hak1mboo@gmail.com</a>| Phone: 796 17 17 18</p>
-                <p>LinkedIn: <a href="https://www.linkedin.com/in/pawe%C5%82-wysocki-02428229">linkedin.com/in/pawe%C5%82-wysocki-02428229</a></p>
-            </div>
-        </div>
+  <div class="container">
+    <button class="no-print export-btn" onclick="exportPDF()">Export PDF</button>
 
-        <div class="section">
-            <h2>Summary</h2>
-            <p>Multi skilled engineer with specialties in: system administration, applications deployments and management, database management (PostgreSQL, MySQL), environment management (VMs, containers), Terraform, Kubernetes (AKS, Rancher), Python, Groovy, Bash, Nexus, SonarQube, Docker, Linux, Windows Servers, Ansible, Puppet, Rundeck, Jenkins, Hyperic, ELK, Nagios, Prometheus, Zabbix, VMware, ESXi, Backups, Disaster Recovery, tech team lead, roadmap building. </p>
-            <p>Over 12 years experience in managing Atlassian software (JIRA, Confluence, Bitbucket, Bamboo, Crowd).</p>
-            <p>Nearly 15 years in IT.</p>
-        </div>
+    <div class="header">
+      <img src="zdjecie.png" alt="Profile Picture">
+      <div>
+        <h1>Paweł Wysocki</h1>
+        <p>Email: <a href="mailto:hak1mboo@gmail.com">hak1mboo@gmail.com</a> | Phone: 796 17 17 18</p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/pawe%C5%82-wysocki-02428229">linkedin.com/in/pawe%C5%82-wysocki-02428229</a></p>
+      </div>
+    </div>
 
+    <!-- === Summary === -->
+    <div class="section">
+      <h2>Summary</h2>
+      <p>Multi skilled engineer with specialties in: system administration, applications deployments and management, database management (PostgreSQL, MySQL), environment management (VMs, containers), Terraform, Kubernetes (AKS, Rancher), Python, Groovy, Bash, Nexus, SonarQube, Docker, Linux, Windows Servers, Ansible, Puppet, Rundeck, Jenkins, Hyperic, ELK, Nagios, Prometheus, Zabbix, VMware, ESXi, Backups, Disaster Recovery, tech team lead, roadmap building. </p>
+      <p>Over 12 years experience in managing Atlassian software (JIRA, Confluence, Bitbucket, Bamboo, Crowd).</p>
+      <p>Nearly 15 years in IT.</p>
+    </div>
+
+    <!-- === Experience === -->
         <div class="section">
             <h2>Experience</h2>
             <ul>
@@ -273,10 +303,25 @@
         </div>
 
 
-        <div class="footer">
-            <p>© 2025 Paweł Wysocki. All rights reserved.</p>
-        </div>
+    <div class="footer">
+      <p>© 2025 Paweł Wysocki. All rights reserved.</p>
     </div>
+  </div>
 
-
-</body></html>
+  <!-- html2pdf script -->
+  <script src="https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js"></script>
+  <script>
+    function exportPDF() {
+      const opt = {
+        margin: [10,10,10,10],
+        filename: 'Pawel-Wysocki-CV.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+        pagebreak: { mode: ['css', 'legacy'] }
+      };
+      html2pdf().set(opt).from(document.querySelector('.container')).save();
+    }
+  </script>
+</body>
+</html>
